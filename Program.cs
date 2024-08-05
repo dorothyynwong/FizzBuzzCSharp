@@ -63,13 +63,15 @@ namespace FizzBuzz
 
         static void Main(string[] args)
         {
-            int maxNumber;
-            do {
-                maxNumber = GetMaxNumberFromUsers();
-                if (maxNumber < 0) Console.WriteLine("Invalid number, please enter again.");
+            // int maxNumber;
+            // do {
+            //     maxNumber = GetMaxNumberFromUsers();
+            //     if (maxNumber < 0) Console.WriteLine("Invalid number, please enter again.");
 
-            } while (maxNumber <= 0);
-            PrintFizzBuzz(maxNumber);
+            // } while (maxNumber <= 0);
+            // PrintFizzBuzz(maxNumber);
+
+            Console.WriteLine(string.Join(" ",Enumerable.Range(1,100).Select(n=>n%15==0 ? "FizzBuzz" : n%21==0 ? "FizzBang" : n%35==0 ? "BuzzBang" : n%3==0 ? "Fizz" : n%5==0 ? "Buzz" : n%7==0 ? "Bang" : n.ToString())));
         }
     }
 }
