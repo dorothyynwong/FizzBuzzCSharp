@@ -12,9 +12,6 @@ namespace FizzBuzz
                 {7, "Bang"},
                 {11, "Bong"},
                 {13, "Fezz"},
-                // {15, "FizzBuzz"},
-                // {21, "FizzBang"},
-                // {35, "BuzzBang"}
             };
 
         static List<string> SpecialHandlingForFezz(List<string> words)
@@ -33,7 +30,7 @@ namespace FizzBuzz
         {
 
 
-            IEnumerable<String> numbers = Enumerable.Range(1, 100).Select(num => {
+            IEnumerable<String> numbers = Enumerable.Range(1, 300).Select(num => {
                 List<string> words = new List<string>();
 
                 if (num%13 ==0) words.Add(rules[13]);
@@ -48,6 +45,9 @@ namespace FizzBuzz
                 }
 
                 if (words.Count == 0) words.Add(num.ToString());
+
+                if (num%17 == 0) words.Reverse();
+
                 return string.Join("",words);
             });
 
