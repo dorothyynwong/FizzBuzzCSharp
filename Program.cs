@@ -26,10 +26,7 @@ namespace FizzBuzz
             return words;
         }
 
-        static void Main(string[] args)
-        {
-
-
+        static void PrintFizzBuzz() {
             IEnumerable<String> numbers = Enumerable.Range(1, 300).Select(num => {
                 List<string> words = new List<string>();
 
@@ -54,6 +51,12 @@ namespace FizzBuzz
             string result = string.Join(" ", numbers);
 
             Console.WriteLine(result);
+        }
+
+        static void Main(string[] args)
+        {
+            PrintFizzBuzz();
+
         }
     }
 }
