@@ -15,20 +15,20 @@ namespace FizzBuzz
                 {7, "Bang"},
                 {11, "Bong"},
                 {13, "Fezz"},
-                {15, "FizzBuzz"},
-                {21, "FizzBang"},
-                {35, "BuzzBang"}
+                // {15, "FizzBuzz"},
+                // {21, "FizzBang"},
+                // {35, "BuzzBang"}
             };
 
             IEnumerable<String> numbers = Enumerable.Range(1, 100).Select(num => {
-                string word = "";
+                List<string> word = new List<string>();
                 foreach (var rule in rules)
                 {
-                    if (num % rule.Key == 0) word = rule.Value;
+                    if (num % rule.Key == 0) word.Add(rule.Value);
                 }
 
-                if (string.IsNullOrEmpty(word)) word = num.ToString();
-                return word;
+                if (word.Count == 0) word.Add(num.ToString());
+                return string.Join("",word);
             });
 
             string result = string.Join(" ", numbers);
