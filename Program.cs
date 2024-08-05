@@ -6,13 +6,7 @@ namespace FizzBuzz
 {
     class Program
     {
-        static List<string> SpecialHandlingForFezz(List<string> words) {
-            return words;
-        }
-
-        static void Main(string[] args)
-        {
-            Dictionary<int, string> rules = new Dictionary<int, string>{
+        static Dictionary<int, string> rules = new Dictionary<int, string>{
                 {3, "Fizz"},
                 {5, "Buzz"},
                 {7, "Bang"},
@@ -22,6 +16,21 @@ namespace FizzBuzz
                 // {21, "FizzBang"},
                 // {35, "BuzzBang"}
             };
+
+        static List<string> SpecialHandlingForFezz(List<string> words)
+        {
+            if (words.Contains(rules[3]))
+            {
+                words.Remove(rules[13]);
+                int fizzIndex = words.IndexOf(rules[3]);
+                words.Insert(fizzIndex + 1, rules[13]);
+            }
+
+            return words;
+        }
+
+        static void Main(string[] args)
+        {
 
 
             IEnumerable<String> numbers = Enumerable.Range(1, 100).Select(num => {
@@ -34,10 +43,8 @@ namespace FizzBuzz
                     if (rule.Key != 13 && num % rule.Key == 0) words.Add(rule.Value);
                 }
 
-                if (words.Contains(rules[13]) && words.Contains(rules[3])) {
-                    words.Remove(rules[13]);
-                    int fizzIndex = words.IndexOf(rules[3]);
-                    words.Insert(fizzIndex + 1, rules[13]);
+                if (words.Contains(rules[13])) {
+                    words = SpecialHandlingForFezz(words);
                 }
 
                 if (words.Count == 0) words.Add(num.ToString());
