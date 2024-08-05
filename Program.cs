@@ -26,8 +26,8 @@ namespace FizzBuzz
             return words;
         }
 
-        static void PrintFizzBuzz() {
-            IEnumerable<String> numbers = Enumerable.Range(1, 300).Select(num => {
+        static void PrintFizzBuzz(int maxNumber) {
+            IEnumerable<String> numbers = Enumerable.Range(1, maxNumber).Select(num => {
                 List<string> words = new List<string>();
 
                 if (num%13 ==0) words.Add(rules[13]);
@@ -55,8 +55,12 @@ namespace FizzBuzz
 
         static void Main(string[] args)
         {
-            PrintFizzBuzz();
-
+            Console.Write("Please input the maximum number: ");
+            string strInput = Console.ReadLine();
+            int maxNumber = 0;
+            if (int.TryParse(strInput, out maxNumber)) {
+                PrintFizzBuzz(maxNumber);
+            }
         }
     }
 }
