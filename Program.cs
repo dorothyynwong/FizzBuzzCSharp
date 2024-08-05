@@ -6,6 +6,9 @@ namespace FizzBuzz
 {
     class Program
     {
+        static List<string> SpecialHandlingForFezz(List<string> words) {
+            return words;
+        }
 
         static void Main(string[] args)
         {
@@ -22,23 +25,23 @@ namespace FizzBuzz
 
 
             IEnumerable<String> numbers = Enumerable.Range(1, 100).Select(num => {
-                List<string> word = new List<string>();
+                List<string> words = new List<string>();
 
-                if (num%13 ==0) word.Add(rules[13]);
+                if (num%13 ==0) words.Add(rules[13]);
 
                 foreach (var rule in rules)
                 {
-                    if (rule.Key != 13 && num % rule.Key == 0) word.Add(rule.Value);
+                    if (rule.Key != 13 && num % rule.Key == 0) words.Add(rule.Value);
                 }
 
-                if (word.Contains(rules[13]) && word.Contains(rules[3])) {
-                    word.Remove(rules[13]);
-                    int fizzIndex = word.IndexOf(rules[3]);
-                    word.Insert(fizzIndex + 1, rules[13]);
+                if (words.Contains(rules[13]) && words.Contains(rules[3])) {
+                    words.Remove(rules[13]);
+                    int fizzIndex = words.IndexOf(rules[3]);
+                    words.Insert(fizzIndex + 1, rules[13]);
                 }
 
-                if (word.Count == 0) word.Add(num.ToString());
-                return string.Join("",word);
+                if (words.Count == 0) words.Add(num.ToString());
+                return string.Join("",words);
             });
 
             string result = string.Join(" ", numbers);
