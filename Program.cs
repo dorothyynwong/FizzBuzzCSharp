@@ -7,6 +7,7 @@ namespace FizzBuzz
 {
     class Program
     {
+        //default rules if no arguments
         static Dictionary<int, string> defaultRules = new Dictionary<int, string>{
                 {3, "Fizz"},
                 {5, "Buzz"},
@@ -15,24 +16,33 @@ namespace FizzBuzz
                 {13, "Fezz"},
                 {17, ""}
             };
+
+        //user's chosen rules
         static Dictionary<int, string> userRules = new Dictionary<int, string>();
 
-        static void GetRulesFromUsers(string[] args) {
-            if (args.Length > 0) {
-                foreach(string arg in args) {
-                    string[] splitArg = arg.Split(",");
-                    int num;
-                    int.TryParse(splitArg[0], out num);
+        static void GetRulesFromUsers(string[] args)
+        {
+            if (args.Length == 0)
+            {
+                userRules = new Dictionary<int, string>(defaultRules);
+                return;
+            }
 
-                    if (!defaultRules.ContainsKey(num)) {
-                        Console.Write("Invalid rule. Default rules will be use. " + arg);
-                        userRules = defaultRules;
-                        break;
-                    } else {
-                        userRules.Add(num, defaultRules[num]);
-                    }
+
+            foreach (string arg in args)
+            {
+                int num;
+                int.TryParse(arg, out num);
+
+                if (!defaultRules.ContainsKey(num))
+                {
+                    Console.WriteLine("Invalid rule. Default rules will be use. " + arg);
+                    userRules = defaultRules;
+                    return;
                 }
-            } else userRules = defaultRules;
+                
+                userRules[num] = defaultRules[num];
+            }
         }
 
         static List<string> SpecialHandlingForFezz(List<string> words)
